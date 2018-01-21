@@ -16,7 +16,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>    <a class="navbar-brand">Dashboard Pimpinan</a>
+                    </button>
+                    <a class="navbar-brand">Data Produk</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -31,7 +32,7 @@
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="http://localhost/skripsiku/index.php/c_login/logout" class="text-danger">
+                                    <a href="/" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -42,42 +43,55 @@
                 </div>
             </div>
         </nav>
+
         <!--Grafik Permintaan-->
-        <div class="content">
+        <div class="content wrapper">
             <div class="container-fluid">
                 <div class="row">
+
+                    <!-- Tabel jumlah produk -->
                     <div class="col-md-12">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Data Penjualan</h4>
-                            </div>
+                        <div class="card">
+                            <div class="header">Daftar Produk</div>
                             <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
-                            </div>
-                            <div class="footer">
-                                <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Suwar-Suwir Rasa Nanas
-                                    <i class="fa fa-circle text-danger"></i> Suwar-Suwir Rasa Melon
+                                <div class="toolbar">
+                                    <a href="/produk/create"
+                                       class="btn btn-primary" type="button">Tambah Data</a>
                                 </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-check"></i> Data information certified
+                                <div class="fresh-datatables">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                        <th>ID</th>
+                                        <th>Nama Produk</th>
+                                        <th>Harga</th>
+                                        <th class="disabled-sorting text-right">Actions</th>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($data as $row)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $row['nama_produk'] }}</td>
+                                                <td>{{ $row['harga'] }}</td>
+                                                <td class="text-right">
+                                                    <a class="btn btn-simple btn-warning btn-icon table-action edit"
+                                                       rel="tooltip" title="Ubah"
+                                                       href="/produk/update/{{ $row['id'] }}"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-simple btn-warning btn-icon table-action delete"
+                                                       rel="tooltip" title="Hapus"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Tabel jumlah produk end -->
                 </div>
             </div>
         </div>
         <!--Grafik Permintaan end-->
     </div>
-@endsection
-
-@section('script')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            demo.initDashboardPageCharts();
-            demo.initVectorMap();
-        });
-    </script>
 @endsection
