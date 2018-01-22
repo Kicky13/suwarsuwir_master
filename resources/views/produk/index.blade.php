@@ -71,8 +71,8 @@
                                         @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row['nama_produk'] }}</td>
-                                                <td>{{ $row['harga'] }}</td>
+                                                <td>{{ $row->nama_produk }}</td>
+                                                <td>{{ $row->harga }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"
                                                        rel="tooltip" title="Ubah"

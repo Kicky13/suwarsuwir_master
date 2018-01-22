@@ -10,6 +10,7 @@ class ProdukController extends Controller
     public function index()
     {
         $data = Produk::all();
+//        echo $data;
         return view('produk.index', compact('data'));
     }
     public function createView()
@@ -23,7 +24,7 @@ class ProdukController extends Controller
     }
     public function updateView($id)
     {
-        $data = Produk::find($id)->first();
+        $data = Produk::find($id);
         return view('produk.update', compact('data'));
     }
     public function update(Request $request, $id)

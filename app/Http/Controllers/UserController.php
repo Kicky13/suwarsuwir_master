@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::join('level', 'level.id', '=', 'users.idLevel')->join('status_user', 'status_user.id', '=', 'users.idStatus')->where('users.id', '!=', Auth::id())->get();
+        $data = User::all();
         return  view('user.index', compact('data'));
     }
     public function createView()
@@ -43,7 +43,7 @@ class UserController extends Controller
     }
     public function updateView($id)
     {
-        $data = User::find($id)->first();
+        $data = User::find($id);
         $level = DB::table('level')->get();
         return view('user.update')->with(['data' => $data, 'level' => $level]);
     }

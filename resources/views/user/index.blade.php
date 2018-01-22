@@ -67,9 +67,9 @@
                                         <th class="disabled-sorting text-right">Actions</th>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <?php $no = 1; ?>
-                                            @foreach ($data as $row)
+                                        <?php $no = 1; ?>
+                                        @foreach ($data as $row)
+                                            <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $row['nama'] }}</td>
                                                 <td>{{ $row['alamat'] }}</td>
@@ -82,10 +82,11 @@
                                                        href="/user/update/{{ $row['id'] }}"><i
                                                                 class="fa fa-edit"></i></a>
                                                     <button class="btn btn-simple btn-warning btn-icon table-action delete"
-                                                            rel="tooltip" title="Nonaktifkan" data-id="{{ $row['id'] }}"><i
+                                                            rel="tooltip" title="Nonaktifkan"
+                                                            data-id="{{ $row['id'] }}"><i
                                                                 class="fa fa-times"></i></button>
                                                 </td>
-                                        </tr>
+                                            </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
