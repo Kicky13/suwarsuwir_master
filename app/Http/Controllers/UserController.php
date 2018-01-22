@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $data = User::join('level', 'level.id', '=', 'users.idLevel')->get();
+        $data = User::join('level', 'level.id', '=', 'users.idLevel')->join('status_user', 'status_user.id', '=', 'users.idStatus')->where('users.id', '!=', Auth::id())->get();
         return  view('user.index', compact('data'));
     }
     public function createView()
@@ -25,14 +26,20 @@ class UserController extends Controller
             'username' => 'unique:users,username',
             'password' => 'min:6'
         ]);
-        User::create([
+        $id = User::create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'email' => $request->email,
             'username' => $request->username,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'idLevel' => $request->level
         ]);
-        return redirect('/user');
+        if ($request->level == 4){
+            DB::table('reseller')->insert(['idUser' => $id->id]);
+            return redirect('/user');
+        } else {
+            return redirect('/user');
+        }
     }
     public function updateView($id)
     {

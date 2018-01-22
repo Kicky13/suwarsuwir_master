@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="/" class="text-danger">
+                                    <a href="/logout" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -85,7 +85,7 @@
                                         <select name="level" class="form-control" required>
                                             <option selected disabled>Pilih Salah Satu</option>
                                             @foreach ($level as $item)
-                                                <option {{ ($data['idLevel'] == $item->id) }} value="{{ $item->id }}">{{ $item->level }}</option>
+                                                <option {{ ($data['idLevel'] == $item->id) ? "selected" : "" }} value="{{ $item->id }}">{{ $item->level }}</option>
                                             @endforeach
                                         </select>
                                     </div>

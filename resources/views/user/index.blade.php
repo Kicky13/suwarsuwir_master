@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="/" class="text-danger">
+                                    <a href="/logout" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -62,6 +62,7 @@
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Email</th>
+                                        <th>Jabatan</th>
                                         <th>Status</th>
                                         <th class="disabled-sorting text-right">Actions</th>
                                         </thead>
@@ -69,19 +70,21 @@
                                         <tr>
                                             <?php $no = 1; ?>
                                             @foreach ($data as $row)
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $row['nama'] }}</td>
-                                            <td>{{ $row['alamat'] }}</td>
-                                            <td>{{ $row['email'] }}</td>
-                                            <td>{{ $row['level'] }}</td>
-                                            <td class="text-right">
-                                                <a class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                   rel="tooltip" title="Ubah"
-                                                   href="/user/update/{{ $row['id'] }}"><i
-                                                            class="fa fa-edit"></i></a>
-                                                <button class="btn btn-simple btn-warning btn-icon table-action delete"
-                                                   rel="tooltip" title="Hapus" data-id="{{ $row['id'] }}"><i class="fa fa-times"></i></button>
-                                            </td>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $row['nama'] }}</td>
+                                                <td>{{ $row['alamat'] }}</td>
+                                                <td>{{ $row['email'] }}</td>
+                                                <td>{{ $row['level'] }}</td>
+                                                <td>{{ $row['statusUser'] }}</td>
+                                                <td class="text-right">
+                                                    <a class="btn btn-simple btn-warning btn-icon table-action edit"
+                                                       rel="tooltip" title="Ubah"
+                                                       href="/user/update/{{ $row['id'] }}"><i
+                                                                class="fa fa-edit"></i></a>
+                                                    <button class="btn btn-simple btn-warning btn-icon table-action delete"
+                                                            rel="tooltip" title="Nonaktifkan" data-id="{{ $row['id'] }}"><i
+                                                                class="fa fa-times"></i></button>
+                                                </td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -101,11 +104,11 @@
 @section('script')
     <script>
         $(document).ready(function () {
-           console.log('windows Ready');
-           $('.delete').click(function () {
-              var id = $(this).attr('data-id');
-              swal('ARE YOU SURE ?', 'DELETE '+id, 'error')
-           });
+            console.log('windows Ready');
+            $('.delete').click(function () {
+                var id = $(this).attr('data-id');
+                swal('ARE YOU SURE ?', 'DELETE ' + id, 'error')
+            });
         });
     </script>
 @endsection
