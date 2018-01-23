@@ -71,10 +71,10 @@
                                         @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row['nama'] }}</td>
-                                                <td>{{ $row['alamat'] }}</td>
-                                                <td>{{ $row['email'] }}</td>
-                                                <td>{{ $row['level'] }}</td>
+                                                <td>{{ $row->nama }}</td>
+                                                <td>{{ $row->alamat }}</td>
+                                                <td>{{ $row->email }}</td>
+                                                <td>{{ $row->level->level }}</td>
                                                 <td>{{ $row['statusUser'] }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"

@@ -1,4 +1,4 @@
-@extends('layouts.pimpinanApp')
+@extends('layouts.resellerApp')
 
 @section('konten')
     <div class="main-panel">
@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="/" class="text-danger">
+                                    <a href="/logout" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -47,40 +47,33 @@
         <div class="content wrapper">
             <div class="container-fluid">
                 <div class="row">
+                    <!-- Tabel jumlah produk -->
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="/produk/create" method="post"
-                                  enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <div class="header">Tambah Produk</div>
-                                <div class="content">
-                                    <div class="form-group">
-                                        <label>Nama Produk</label>
-                                        <input type="text" name="nama_produk" placeholder="masukkan nama produk"
-                                               class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Harga (Rp.)</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <a> Rp.</a>
-                                            </div>
-                                            <input type="text" name="harga" placeholder="masukkan harga"
-                                                   class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label></label>
-                                        <button type="submit" value="submit" class="btn btn-fill btn-info">Simpan
-                                        </button>
-                                        <a href="/produk" class="btn btn-danger btn-fill ">Kembali</a>
-                                    </div>
+                            <div class="header">Daftar Produk</div>
+                            <div class="content">
+                                <div class="fresh-datatables">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                        <th>#</th>
+                                        <th>Nama Produk</th>
+                                        <th>Harga</th>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($data as $row)
+                                        <td><?= $no++ ?></td>
+                                        <td>{{ $row['nama_produk'] }}</td>
+                                        <td>{{ $row['harga'] }}</td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                    <!-- Data Reseller end-->
-
+                    <!-- Tabel jumlah produk end -->
                 </div>
             </div>
         </div>

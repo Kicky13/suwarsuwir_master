@@ -67,7 +67,7 @@
     <div class="sidebar" data-color="orange" data-image="/app/img/full-screen-image-3.jpg">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="logo-text">
-                Pimpinan
+                Reseller
             </a>
         </div>
         <div class="logo logo-mini">
@@ -104,39 +104,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/user">
-                        <i class="pe-7s-note2"></i>
-                        <p>Data Pengguna</p>
-                    </a>
-                </li>
-                <li>
                     <a href="/produk">
-                        <i class="pe-7s-plugin"></i>
+                        <i class="pe-7s-note2"></i>
                         <p>Produk</p>
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <i class="pe-7s-gift"></i>
-                        <p>Peramalan</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
+                    <a href="/permintaan">
                         <i class="pe-7s-plugin"></i>
-                        <p>Rekap Penjualan</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="pe-7s-plugin"></i>
-                        <p>Rekap Hasil Peramalan</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="pe-7s-plugin"></i>
-                        <p>Rekap Produksi</p>
+                        <p>Permintaan</p>
                     </a>
                 </li>
             </ul>

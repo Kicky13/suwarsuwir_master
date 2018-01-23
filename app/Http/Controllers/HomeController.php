@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->idLevel == 1){
+        if (Auth::user()->level_id == 1){
             return view('home.pimpinan');
-        } elseif (Auth::user()->idLevel == 4){
+        } elseif (Auth::user()->level_id == 4){
             return view('home.reseller');
         }
     }

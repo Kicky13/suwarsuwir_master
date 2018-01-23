@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::all();
+        $data = User::with('level')->get();
         return  view('user.index', compact('data'));
     }
     public function createView()

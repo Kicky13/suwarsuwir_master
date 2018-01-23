@@ -8,5 +8,5 @@ class Produk extends Model
 {
     protected $table = 'produk';
     public $timestamps = false;
-    protected $fillable = ['nama_produk', 'harga'];
+    protected $fillable = ['nama_produk', 'harga', 'jumlah_produk'];
 }
