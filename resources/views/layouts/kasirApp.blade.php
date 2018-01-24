@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/app/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    @l
+    @yield('addedMeta')
     <title>SI SUWAR-SUWIR JEMBER</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -67,7 +67,7 @@
     <div class="sidebar" data-color="orange" data-image="/app/img/full-screen-image-3.jpg">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="logo-text">
-                Reseller
+                Kasir
             </a>
         </div>
         <div class="logo logo-mini">
@@ -104,15 +104,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/produk">
-                        <i class="pe-7s-note2"></i>
-                        <p>Produk</p>
+                    <a href="/permintaan">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Permintaan</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/permintaan">
-                        <i class="pe-7s-plugin"></i>
-                        <p>Permintaan</p>
+                    <a href="/produk">
+                        <i class="pe-7s-note2"></i>
+                        <p>Produk</p>
                     </a>
                 </li>
             </ul>

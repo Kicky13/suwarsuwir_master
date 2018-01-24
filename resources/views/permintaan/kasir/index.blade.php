@@ -1,4 +1,4 @@
-@extends('layouts.resellerApp')
+@extends('layouts.kasirApp')
 
 @section('konten')
     <div class="main-panel">

@@ -26,6 +26,8 @@ class HomeController extends Controller
     {
         if (Auth::user()->level_id == 1){
             return view('home.pimpinan');
+        } elseif (Auth::user()->level_id == 2){
+            return view('home.kasir');
         } elseif (Auth::user()->level_id == 4){
             return view('home.reseller');
         }

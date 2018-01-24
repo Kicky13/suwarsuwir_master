@@ -75,7 +75,7 @@
                                                 <td>{{ $row->alamat }}</td>
                                                 <td>{{ $row->email }}</td>
                                                 <td>{{ $row->level->level }}</td>
-                                                <td>{{ $row['statusUser'] }}</td>
+                                                <td>{{ ($row->status_id == 1) ? "Aktif" : "Tidak Aktif" }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"
                                                        rel="tooltip" title="Ubah"

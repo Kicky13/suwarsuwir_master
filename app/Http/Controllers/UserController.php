@@ -32,7 +32,7 @@ class UserController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'idLevel' => $request->level
+            'level_id' => $request->level
         ]);
         if ($request->level == 4){
             DB::table('reseller')->insert(['idUser' => $id->id]);
