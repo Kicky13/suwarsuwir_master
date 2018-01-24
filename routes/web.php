@@ -34,3 +34,5 @@ Route::get('/produk/update/{id}', 'ProdukController@updateView');
 Route::post('/produk/update/{id}', 'ProdukController@update');
 
 Route::get('/permintaan', 'PermintaanController@index');
+Route::get('/permintaan/create', 'PermintaanController@createView');
+Route::post('/permintaan/create', 'PermintaanController@create');

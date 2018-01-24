@@ -60,7 +60,7 @@
                                 <div class="fresh-datatables">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                        <th>ID</th>
+                                        <th>#</th>
                                         <th>Tanggal</th>
                                         <th>Nama Produk</th>
                                         <th>Jumlah</th>
@@ -71,11 +71,11 @@
                                         <?php $no = 1; ?>
                                         @foreach ($data as $row)
                                             <tr>
-                                                <td><?= $no ?></td>
-                                                <td><?= $row['tanggalPermintaan']?></td>
-                                                <td><?= $row['namaproduk']?></td>
-                                                <td><?= $row['jumlah']?></td>
-                                                <td><?= $row['status']?></td>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $row->permintaan->tanggal_permintaan }}</td>
+                                                <td>{{ $row->produk->nama_produk }}</td>
+                                                <td>{{ $row->jumlah_permintaan }}</td>
+                                                <td>{{ $row->status_validasi }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-info btn-icon table-action view"
                                                        rel="tooltip" title="Lihat"
