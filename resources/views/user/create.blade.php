@@ -87,10 +87,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Jabatan</label>
-                                        <select name="level" class="form-control" required>
+                                        <select name="role" class="form-control" required>
                                             <option selected disabled>Pilih Salah Satu</option>
-                                            @foreach ($level as $item)
-                                            <option value="{{ $item->id }}">{{ $item->level }}</option>
+                                            @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->role }}</option>
                                             @endforeach
                                         </select>
                                     </div>

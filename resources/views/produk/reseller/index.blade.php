@@ -61,10 +61,10 @@
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($data as $row)
-                                        <td><?= $no++ ?></td>
-                                        <td>{{ $row['nama_produk'] }}</td>
-                                        <td>{{ $row['harga'] }}</td>
+                                        @foreach ($products as $product)
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $product->nama_produk }}</td>
+                                        <td>{{ $product->harga }}</td>
                                         </tr>
                                         @endforeach
                                         </tbody>

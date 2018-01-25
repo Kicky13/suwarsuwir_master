@@ -56,38 +56,29 @@
                             @endforeach
                         @endif
                         <div class="card">
-                            <form action="/user/update/{{ $data['id'] }}" method="post">
+                            <form action="/user/update/{{ $user->id }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="header">Tambah Pengguna</div>
                                 <div class="content">
                                     <div class="form-group">
                                         <label>Nama Pengguna</label>
-                                        <input type="text" name="nama" value="{{ $data['nama'] }}" placeholder="masukkan nama pengguna"
+                                        <input type="text" name="nama" value="{{ $user->nama }}" placeholder="masukkan nama pengguna"
                                                class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat</label>
-                                        <input type="text" name="alamat" value="{{ $data['alamat'] }}" placeholder="masukkan alamat"
+                                        <input type="text" name="alamat" value="{{ $user->alamat }}" placeholder="masukkan alamat"
                                                class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="text" name="email" value="{{ $data['email'] }}" placeholder="masukkan email"
+                                        <input type="text" name="email" value="{{ $user->email }}" placeholder="masukkan email"
                                                class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" name="password" placeholder="Kosongi Password apabila tidak perlu dirubah"
                                                class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jabatan</label>
-                                        <select name="level" class="form-control" required>
-                                            <option selected disabled>Pilih Salah Satu</option>
-                                            @foreach ($level as $item)
-                                                <option {{ ($data['idLevel'] == $item->id) ? "selected" : "" }} value="{{ $item->id }}">{{ $item->level }}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label></label>

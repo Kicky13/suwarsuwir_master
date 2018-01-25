@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,15 +12,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::all();
-//        dd($data);
-        return view('user.index', compact('data'));
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
+
     public function createView()
     {
-        $level = DB::table('level')->get();
-        return view('user.create', compact('level'));
+        $roles = Role::all();
+        return view('user.create', compact('roles'));
     }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -27,30 +29,28 @@ class UserController extends Controller
             'username' => 'unique:users,username',
             'password' => 'min:6'
         ]);
-        $id = User::create([
+        echo $request->role;
+        User::create([
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'email' => $request->email,
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'level_id' => $request->level
+            'role_id' => $request->role
         ]);
-        if ($request->level == 4){
-            DB::table('reseller')->insert(['idUser' => $id->id]);
-            return redirect('/user');
-        } else {
-            return redirect('/user');
-        }
+        return redirect('/user');
     }
+
     public function updateView($id)
     {
-        $data = User::find($id);
-        $level = DB::table('level')->get();
-        return view('user.update')->with(['data' => $data, 'level' => $level]);
+        $user = User::find($id);
+        $roles = Role::all();
+        return view('user.update')->with(['user' => $user, 'roles' => $roles]);
     }
+
     public function update(Request $request, $id)
     {
-        if ($request->password == ''){
+        if ($request->password == '') {
             $request->validate([
                 'email' => 'E-Mail'
             ]);
@@ -73,6 +73,7 @@ class UserController extends Controller
         }
         return redirect('/user');
     }
+
     public function destroy($id)
     {
         User::find($id)->delete();

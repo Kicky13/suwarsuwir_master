@@ -68,15 +68,15 @@
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($data as $row)
+                                        @foreach ($products as $product)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row->nama_produk }}</td>
-                                                <td>{{ $row->harga }}</td>
+                                                <td>{{ $product->nama_produk }}</td>
+                                                <td>{{ $product->harga }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"
                                                        rel="tooltip" title="Ubah"
-                                                       href="/produk/update/{{ $row['id'] }}"><i class="fa fa-edit"></i></a>
+                                                       href="/produk/update/{{ $product->id }}"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-simple btn-warning btn-icon table-action delete"
                                                        rel="tooltip" title="Hapus"><i class="fa fa-times"></i></a>
                                                 </td>

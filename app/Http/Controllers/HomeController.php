@@ -27,12 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Pimpinan::where('users_id', '=', Auth::user()->id)->count() > 0){
+        if (Auth::user()->role_id == 1){
             return view('home.pimpinan');
-        } elseif (Reseller::where('users_id', '=', Auth::user()->id)->count() > 0){
-            return view('home.reseller');
-        } elseif (Kasir::where('users_id', '=', Auth::user()->id)->count() > 0){
+        } elseif (Auth::user()->role_id == 2){
             return view('home.kasir');
+        } elseif (Auth::user()->role_id == 3){
+            return view('home.bagprod');
+        } else {
+            return view('home.reseller');
         }
     }
 }

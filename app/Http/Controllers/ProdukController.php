@@ -10,12 +10,12 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->level_id == 1){
-            $data = Produk::all();
-            return view('produk.pimpinan.index', compact('data'));
-        } elseif (Auth::user()->level_id == 4){
-            $data = Produk::all();
-            return view('produk.reseller.index', compact('data'));
+        if (Auth::user()->role_id == 1){
+            $products = Produk::all();
+            return view('produk.pimpinan.index', compact('products'));
+        } elseif (Auth::user()->role_id == 4){
+            $products = Produk::all();
+            return view('produk.reseller.index', compact('products'));
         }
     }
     public function createView()
@@ -29,8 +29,8 @@ class ProdukController extends Controller
     }
     public function updateView($id)
     {
-        $data = Produk::find($id);
-        return view('produk.pimpinan.update', compact('data'));
+        $product = Produk::find($id);
+        return view('produk.pimpinan.update', compact('product'));
     }
     public function update(Request $request, $id)
     {

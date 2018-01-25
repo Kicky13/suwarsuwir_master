@@ -68,18 +68,18 @@
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($data as $row)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row->pimpinan->nama }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{ $user->nama }}</td>
+                                                <td>{{ $user->alamat }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->role->role }}</td>
+                                                <td>{{ ($user->status_id == 1) ? "Aktif" : "Tidak Aktif" }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"
                                                        rel="tooltip" title="Ubah"
-                                                       href="/user/update/"><i
+                                                       href="/user/update/{{ $user->id }}"><i
                                                                 class="fa fa-edit"></i></a>
                                                     <button class="btn btn-simple btn-warning btn-icon table-action delete"
                                                             rel="tooltip" title="Nonaktifkan"
