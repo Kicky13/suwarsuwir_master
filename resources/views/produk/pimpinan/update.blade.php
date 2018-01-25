@@ -49,14 +49,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form action="/produk/update/{{ $data['id'] }}" method="post"
+                            <form action="/produk/update/{{ $product['id'] }}" method="post"
                                   enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="header">Tambah Produk</div>
                                 <div class="content">
                                     <div class="form-group">
                                         <label>Nama Produk</label>
-                                        <input type="text" name="nama_produk" value="{{ $data['nama_produk'] }}" placeholder="masukkan nama produk"
+                                        <input type="text" name="nama_produk" value="{{ $product['nama_produk'] }}" placeholder="masukkan nama produk"
                                                class="form-control" required>
                                     </div>
                                     <div class="form-group">
@@ -65,7 +65,7 @@
                                             <div class="input-group-addon">
                                                 <a> Rp.</a>
                                             </div>
-                                            <input type="text" name="harga" value="{{ $data['harga'] }}" placeholder="masukkan harga"
+                                            <input type="text" name="harga" value="{{ $product['harga'] }}" placeholder="masukkan harga"
                                                    class="form-control" required>
                                         </div>
                                     </div>
