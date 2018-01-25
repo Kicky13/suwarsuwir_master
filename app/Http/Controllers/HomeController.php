@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Kasir;
+use App\Pimpinan;
+use App\Reseller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,12 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->level_id == 1){
+        if (Pimpinan::where('users_id', '=', Auth::user()->id)->count() > 0){
             return view('home.pimpinan');
-        } elseif (Auth::user()->level_id == 2){
-            return view('home.kasir');
-        } elseif (Auth::user()->level_id == 4){
+        } elseif (Reseller::where('users_id', '=', Auth::user()->id)->count() > 0){
             return view('home.reseller');
+        } elseif (Kasir::where('users_id', '=', Auth::user()->id)->count() > 0){
+            return view('home.kasir');
         }
     }
 }

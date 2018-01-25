@@ -71,19 +71,19 @@
                                         @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row->nama }}</td>
-                                                <td>{{ $row->alamat }}</td>
-                                                <td>{{ $row->email }}</td>
-                                                <td>{{ $row->level->level }}</td>
-                                                <td>{{ ($row->status_id == 1) ? "Aktif" : "Tidak Aktif" }}</td>
+                                                <td>{{ $row->pimpinan->nama }}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"
                                                        rel="tooltip" title="Ubah"
-                                                       href="/user/update/{{ $row['id'] }}"><i
+                                                       href="/user/update/"><i
                                                                 class="fa fa-edit"></i></a>
                                                     <button class="btn btn-simple btn-warning btn-icon table-action delete"
                                                             rel="tooltip" title="Nonaktifkan"
-                                                            data-id="{{ $row['id'] }}"><i
+                                                            data-id=""><i
                                                                 class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>

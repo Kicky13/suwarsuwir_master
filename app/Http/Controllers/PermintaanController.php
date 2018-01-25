@@ -16,7 +16,6 @@ class PermintaanController extends Controller
         if (Auth::user()->level_id == 1){
             echo 'None';
         } elseif (Auth::user()->level_id == 2){
-
             return view('permintaan.kasir.index');
         } elseif (Auth::user()->level_id == 4){
             $id = DB::table('reseller')->where('users_id', Auth::id())->first()->id;

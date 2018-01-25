@@ -10,16 +10,20 @@ class User extends Authenticatable
     use Notifiable;
     public $timestamps = false;
 
-    protected $fillable = [
-        'nama', 'alamat', 'email', 'username', 'password', 'level_id'
-    ];
+    protected $fillable = ['username', 'password'];
 
-    protected $hidden = [
-        'password', 'remember_token'
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
-    public function level()
+    public function reseller()
     {
-        return $this->belongsTo(Level::class);
+        return $this->hasOne(Reseller::class);
+    }
+    public function pimpinan()
+    {
+        return $this->hasOne(Pimpinan::class);
+    }
+    public function kasir()
+    {
+        return $this->hasOne(Kasir::class);
     }
 }
