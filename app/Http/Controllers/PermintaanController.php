@@ -24,17 +24,16 @@ class PermintaanController extends Controller
     }
     public function createView()
     {
+        $reseller = Auth::id();
+        $id = Permintaan::create(['reseller_id' => $reseller]);
         $products = Produk::all();
-        return view('permintaan.reseller.create', compact('products'));
+        return view('permintaan.reseller.create')->with(['products' => $products, 'id' => $id->id]);
     }
     public function create(Request $request)
     {
-        $id = Auth::id();
-        $produk = Produk::find($request->produk_id);
-        $produk->permintaan()->create([
-            'jumlah_permintaan' => $request->jumlah_permintaan,
-            'reseller_id' => $id
-        ]);
+        $permintaan = Permintaan::find($request->permintaan_id);
+        $produk = $request->produk_id;
+        $permintaan->produk()->attach($produk, ['jumlah_permintaan' => $request->jumlah_permintaan]);
         echo 'Sukses';
     }
     public function updateView($id)

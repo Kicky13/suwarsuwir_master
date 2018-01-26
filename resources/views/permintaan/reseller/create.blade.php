@@ -69,8 +69,8 @@
                                 <div class="form-group">
                                     <label>Jumlah (Kg)</label>
                                     <div class="input-group">
-                                        <input type="number" id="jumlah_permintaan" placeholder="masukkan jumlah"
-                                               class="form-control" required>
+                                        <input type="number" id="jumlah_permintaan" placeholder="masukkan jumlah" class="form-control" required>
+                                        <input type="hidden" id="permintaan_id" value="{{ $id }}">
                                         <div class="input-group-addon">
                                             <a>kg</a>
                                         </div>
@@ -99,6 +99,7 @@
             console.log('ready');
             $('#submit').click(function () {
                 console.log('submit');
+                var permintaan_id = $('#permintaan_id').val();
                 var produk_id = $('#produk_id').val();
                 var jumlah_permintaan = $('#jumlah_permintaan').val();
                 $.ajax({
@@ -107,12 +108,15 @@
                     url         :   '/permintaan/create',
                     data        :   {
                         '_token' : '{{ csrf_token() }}',
+                        'permintaan_id' : permintaan_id,
                         'produk_id' : produk_id,
                         'jumlah_permintaan' : jumlah_permintaan
                     }
                 }).done(function (data) {
                     console.log(data);
-                    window.location.reload();
+                    document.getElementById('produk_id').selectedIndex = 0;
+                    document.getElementById('jumlah_permintaan').value = '';
+                    swal('SUKSES', 'Data berhasil di entry!!', 'success');
                 });
             });
         });

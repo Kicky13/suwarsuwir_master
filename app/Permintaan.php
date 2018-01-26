@@ -8,11 +8,11 @@ class Permintaan extends Model
 {
     protected $table = 'permintaan';
     public $timestamps = false;
-    protected $fillable = ['jumlah_permintaan', 'reseller_id'];
+    protected $fillable = ['reseller_id'];
 
     public function produk()
     {
-        return $this->belongsToMany(Produk::class, 'detailpermintaan', 'permintaan_id', 'produk_id');
+        return $this->belongsToMany(Produk::class, 'permintaan_produk');
     }
     public function user()
     {

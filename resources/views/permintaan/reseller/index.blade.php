@@ -70,23 +70,26 @@
                                         <tbody>
                                         <?php $no = 1; ?>
                                         @foreach ($permintaan as $req)
-                                            <tr>
-                                                <td>{{ $no++ }}</td>
-                                                <td>{{ $req->tanggal_permintaan }}</td>
-                                                <td>{{ $req->produk }}</td>
-                                                <td>{{ $req->jumlah_permintaan }}</td>
-                                                <td>{{ $req->validasi->status_validasi }}</td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-simple btn-info btn-icon table-action view"
-                                                       rel="tooltip" title="Lihat"
-                                                       href="/permintaan/detail/{{ $req->id }}"><i
-                                                                class="fa fa-image"></i></a>
-                                                    <a class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                       rel="tooltip" title="Ubah"
-                                                       href="/permintaan/update/{{ $req->id }}"><i class="fa fa-edit"></i></a>
+                                            @foreach ($req->produk as $produk)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $req->tanggal_permintaan }}</td>
+                                                    <td>{{ $produk['nama_produk'] }}</td>
+                                                    <td>{{ $produk->pivot }}</td>
+                                                    <td>{{ $produk->pivot['validasi_id'] }}</td>
+                                                    <td class="text-right">
+                                                        <a class="btn btn-simple btn-info btn-icon table-action view"
+                                                           rel="tooltip" title="Lihat"
+                                                           href="/permintaan/detail/{{ $req->id }}"><i
+                                                                    class="fa fa-image"></i></a>
+                                                        <a class="btn btn-simple btn-warning btn-icon table-action edit"
+                                                           rel="tooltip" title="Ubah"
+                                                           href="/permintaan/update/{{ $req->id }}"><i
+                                                                    class="fa fa-edit"></i></a>
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @endforeach
                                         </tbody>
                                     </table>
