@@ -10,8 +10,8 @@ class Produk extends Model
     public $timestamps = false;
     protected $fillable = ['nama_produk', 'harga', 'jumlah_produk'];
 
-    public function detailPermintaan()
+    public function permintaan()
     {
-        return $this->hasMany(DetailPermintaan::class);
+        return $this->belongsToMany(Permintaan::class, 'detailPermintaan', 'produk_id', 'permintaan_id');
     }
 }

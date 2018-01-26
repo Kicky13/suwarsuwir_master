@@ -18,4 +18,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function permintaan()
+    {
+        return $this->hasMany(Permintaan::class);
+    }
 }

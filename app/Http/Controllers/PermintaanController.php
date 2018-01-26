@@ -13,26 +13,28 @@ class PermintaanController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->level_id == 1){
+        if (Auth::user()->role_id == 1){
             echo 'None';
-        } elseif (Auth::user()->level_id == 2){
+        } elseif (Auth::user()->role_id == 2){
             return view('permintaan.kasir.index');
-        } elseif (Auth::user()->level_id == 4){
-            $id = DB::table('reseller')->where('users_id', Auth::id())->first()->id;
-            $data = DetailPermintaan::with(['permintaan', 'produk'])->get();
-            return view('permintaan.reseller.index', compact('data'));
+        } elseif (Auth::user()->role_id == 4){
+            $permintaan = Permintaan::all();
+            return view('permintaan.reseller.index', compact('permintaan'));
         }
     }
     public function createView()
     {
-        $reseller = DB::table('reseller')->where('users_id', Auth::id())->first()->id;
-        $id = Permintaan::create(['reseller_id' => $reseller]);
-        $data = Produk::all();
-        return view('permintaan.reseller.create')->with(['data' => $data, 'id' => $id->id]);
+        $products = Produk::all();
+        return view('permintaan.reseller.create', compact('products'));
     }
     public function create(Request $request)
     {
-        DetailPermintaan::create($request->all());
+        $id = Auth::id();
+        $produk = Produk::find($request->produk_id);
+        $produk->permintaan()->create([
+            'jumlah_permintaan' => $request->jumlah_permintaan,
+            'reseller_id' => $id
+        ]);
         echo 'Sukses';
     }
     public function updateView($id)

@@ -69,22 +69,21 @@
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($data as $row)
+                                        @foreach ($permintaan as $req)
                                             <tr>
-                                                <td hidden>{{ $row->id }}</td>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row->permintaan->tanggal_permintaan }}</td>
-                                                <td>{{ $row->produk->nama_produk }}</td>
-                                                <td>{{ $row->jumlah_permintaan }}</td>
-                                                <td>{{ $row->status_validasi }}</td>
+                                                <td>{{ $req->tanggal_permintaan }}</td>
+                                                <td>{{ $req->produk }}</td>
+                                                <td>{{ $req->jumlah_permintaan }}</td>
+                                                <td>{{ $req->validasi->status_validasi }}</td>
                                                 <td class="text-right">
                                                     <a class="btn btn-simple btn-info btn-icon table-action view"
                                                        rel="tooltip" title="Lihat"
-                                                       href="/permintaan/detail/{{ $row->id }}"><i
+                                                       href="/permintaan/detail/{{ $req->id }}"><i
                                                                 class="fa fa-image"></i></a>
                                                     <a class="btn btn-simple btn-warning btn-icon table-action edit"
                                                        rel="tooltip" title="Ubah"
-                                                       href="/permintaan/update/{{ $row->id }}"><i class="fa fa-edit"></i></a>
+                                                       href="/permintaan/update/{{ $req->id }}"><i class="fa fa-edit"></i></a>
 
                                                 </td>
                                             </tr>

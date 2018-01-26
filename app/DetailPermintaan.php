@@ -10,12 +10,4 @@ class DetailPermintaan extends Model
     public $timestamps = false;
     protected $fillable = ['permintaan_id', 'produk_id', 'jumlah_permintaan'];
 
-    public function permintaan()
-    {
-        return $this->belongsTo(Permintaan::class);
-    }
-    public function produk()
-    {
-        return $this->belongsTo(Produk::class);
-    }
 }

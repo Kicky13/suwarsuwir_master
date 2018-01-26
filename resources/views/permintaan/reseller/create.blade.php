@@ -61,12 +61,11 @@
                                     <label>Produk</label>
                                     <select id="produk_id" class="form-control" required>
                                         <option selected disabled>Pilih Salah Satu</option>
-                                        @foreach($data as $row)
-                                            <option value="{{ $row['id'] }}">{{ $row['nama_produk'] }}</option>
+                                        @foreach($products as $product)
+                                            <option value="{{ $product['id'] }}">{{ $product['nama_produk'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <input type="hidden" id="permintaan_id" value="{{ $id }}">
                                 <div class="form-group">
                                     <label>Jumlah (Kg)</label>
                                     <div class="input-group">
@@ -100,7 +99,6 @@
             console.log('ready');
             $('#submit').click(function () {
                 console.log('submit');
-                var permintaan_id = $('#permintaan_id').val();
                 var produk_id = $('#produk_id').val();
                 var jumlah_permintaan = $('#jumlah_permintaan').val();
                 $.ajax({
@@ -109,12 +107,12 @@
                     url         :   '/permintaan/create',
                     data        :   {
                         '_token' : '{{ csrf_token() }}',
-                        'permintaan_id' : permintaan_id,
                         'produk_id' : produk_id,
                         'jumlah_permintaan' : jumlah_permintaan
                     }
                 }).done(function (data) {
                     console.log(data);
+                    window.location.reload();
                 });
             });
         });
