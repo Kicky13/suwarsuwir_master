@@ -75,7 +75,7 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $req->tanggal_permintaan }}</td>
                                                     <td>{{ $produk['nama_produk'] }}</td>
-                                                    <td>{{ $produk->pivot }}</td>
+                                                    <td>{{ $produk->pivot['jumlah_permintaan'] }}</td>
                                                     <td>{{ $produk->pivot['validasi_id'] }}</td>
                                                     <td class="text-right">
                                                         <a class="btn btn-simple btn-info btn-icon table-action view"

@@ -12,7 +12,7 @@ class Permintaan extends Model
 
     public function produk()
     {
-        return $this->belongsToMany(Produk::class, 'permintaan_produk');
+        return $this->belongsToMany(Produk::class, 'permintaan_produk')->withPivot('jumlah_permintaan', 'validasi_id');
     }
     public function user()
     {
