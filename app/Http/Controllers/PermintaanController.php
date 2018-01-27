@@ -36,15 +36,20 @@ class PermintaanController extends Controller
         $permintaan->produk()->attach($produk, ['jumlah_permintaan' => $request->jumlah_permintaan]);
         echo 'Sukses';
     }
-    public function updateView($id)
+    public function detail($id)
     {
-        $produk = Produk::all();
-        $data = DetailPermintaan::find($id);
-        return view('permintaan.reseller.update')->with(['produk' => $produk, 'data' => $data]);
+        $permintaan = Permintaan::find($id);
+        return view('permintaan.reseller.item.index')->with(['items' => $permintaan->produk, 'id' => $id]);
     }
-    public function update(Request $request, $id)
+    public function createItem($id)
     {
-        DetailPermintaan::find($id)->update(['produk_id' => $request->produk_id, 'jumlah_permintaan' => $request->jumlah_permintaan]);
-        return view('/permintaan');
+        $products = Produk::all();
+        return view('permintaan.reseller.item.create')->with(['products' => $products, 'id' => $id]);
+    }
+    public function deleteItem($permintaan, $produk)
+    {
+        $id = Permintaan::find($permintaan);
+        $id->produk()->detach($produk);
+        return redirect('/permintaan/item/'.$permintaan);
     }
 }

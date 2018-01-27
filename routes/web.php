@@ -36,5 +36,8 @@ Route::post('/produk/update/{id}', 'ProdukController@update');
 Route::get('/permintaan', 'PermintaanController@index');
 Route::get('/permintaan/create', 'PermintaanController@createView');
 Route::post('/permintaan/create', 'PermintaanController@create');
+Route::get('/permintaan/item/{id}', 'PermintaanController@detail');
+Route::get('/permintaan/item/create/{id}', 'PermintaanController@createItem');
+Route::get('/permintaan/item/delete/{permintaan}/{produk}', 'PermintaanController@deleteItem');
 Route::get('/permintaan/update/{id}', 'PermintaanController@updateView');
 Route::post('/permintaan/update', 'PermintaanController@update');

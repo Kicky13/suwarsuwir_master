@@ -54,30 +54,31 @@
                             <div class="header">Data Permintaan</div>
                             <div class="content">
                                 <div class="toolbar">
-                                    <a href="/permintaan/create"
-                                       class="btn btn-primary" type="button">Tambah Data</a>
+                                    <a href="/permintaan/item/create/{{ $id }}"
+                                       class="btn btn-primary" type="button">Tambah Item</a>
                                 </div>
                                 <div class="fresh-datatables">
                                     <table class="table table-hover table-striped">
                                         <thead>
                                         <th>#</th>
-                                        <th>Tanggal</th>
-                                        <th>Jumlah Produk Dipesan</th>
-                                        <th>Status</th>
+                                        <th>Nama Produk</th>
+                                        <th>Harga Produk</th>
+                                        <th>Jumlah yang Dipesan</th>
                                         <th class="disabled-sorting text-center">Actions</th>
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($permintaan as $req)
+                                        @foreach ($items as $item)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $req->tanggal_permintaan }}</td>
-                                                <td>{{ count($req->produk) }}</td>
-                                                <td>{{ $req->validasi->status_validasi }}</td>
+                                                <td>{{ $item->nama_produk }}</td>
+                                                <td>{{ $item->harga }}</td>
+                                                <td>{{ $item->pivot['jumlah_permintaan'] }}</td>
                                                 <td class="text-center">
-                                                    <a class="btn btn-simple btn-info btn-icon table-action view"
-                                                       rel="tooltip" title="Lihat"
-                                                       href="/permintaan/item/{{ $req->id }}"><i class="fa fa-eye"></i></a>
+                                                    <a class="btn btn-simple btn-danger btn-icon table-action view"
+                                                       rel="tooltip" title="Hapus"
+                                                       href="/permintaan/item/delete/{{ $item->pivot['permintaan_id']}}/{{ $item->pivot['produk_id'] }} }}"><i
+                                                                class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
