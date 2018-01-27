@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="/" class="text-danger">
+                                    <a href="/logout" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
