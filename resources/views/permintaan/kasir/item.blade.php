@@ -57,34 +57,18 @@
                                     <table class="table table-hover table-striped">
                                         <thead>
                                         <th>#</th>
-                                        <th>Nama Pemesan</th>
-                                        <th>Tanggal Pesan</th>
-                                        <th>Jumlah Produk</th>
-                                        <th>Status</th>
-                                        <th class="disabled-sorting text-center">Actions</th>
+                                        <th>Nama Produk</th>
+                                        <th>Harga Produk</th>
+                                        <th class="text-center">Jumlah yang Dipesan</th>
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($orders as $order)
+                                        @foreach ($items as $item)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $order->user['nama'] }}</td>
-                                                <td>{{ $order->tanggal_permintaan }}</td>
-                                                <td>{{ count($order->produk) }}</td>
-                                                <td>{{ $order->validasi->status_validasi }}</td>
-                                                <td class="text-center">
-                                                    <section {{ ($order->validasi_id == 1) ? "" : "hidden" }}>
-                                                        <a class="btn btn-simple btn-info btn-icon table-action view"
-                                                           rel="tooltip" title="Lihat Detail"
-                                                           href="/permintaan/item/{{ $order->id }}"><i class="fa fa-eye"></i></a>
-                                                        <a class="btn btn-simple btn-danger btn-icon table-action edit"
-                                                           rel="tooltip" title="Tolak Permintaan"
-                                                           href="/permintaan/validasi/{{ $order->id }}/2"><i class="fa fa-times"></i></a>
-                                                        <a class="btn btn-simple btn-success btn-icon table-action edit"
-                                                           rel="tooltip" title="Validasi Permintaan"
-                                                           href="/permintaan/validasi/{{ $order->id }}/3"><i class="fa fa-check"></i></a>
-                                                    </section>
-                                                </td>
+                                                <td>{{ $item->nama_produk }}</td>
+                                                <td>{{ $item->harga }}</td>
+                                                <td class="text-center">{{ $item->pivot['jumlah_permintaan'] }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

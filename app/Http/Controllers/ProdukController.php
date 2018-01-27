@@ -13,6 +13,9 @@ class ProdukController extends Controller
         if (Auth::user()->role_id == 1){
             $products = Produk::all();
             return view('produk.pimpinan.index', compact('products'));
+        } elseif (Auth::user()->role_id == 2){
+            $products = Produk::all();
+            return view('produk.kasir.index', compact('products'));
         } elseif (Auth::user()->role_id == 4){
             $products = Produk::all();
             return view('produk.reseller.index', compact('products'));

@@ -16,7 +16,8 @@ class PermintaanController extends Controller
         if (Auth::user()->role_id == 1){
             echo 'None';
         } elseif (Auth::user()->role_id == 2){
-            return view('permintaan.kasir.index');
+            $orders = Permintaan::all();
+            return view('permintaan.kasir.index', compact('orders'));
         } elseif (Auth::user()->role_id == 4){
             $permintaan = Permintaan::all();
             return view('permintaan.reseller.index', compact('permintaan'));
@@ -38,8 +39,13 @@ class PermintaanController extends Controller
     }
     public function detail($id)
     {
-        $permintaan = Permintaan::find($id);
-        return view('permintaan.reseller.item.index')->with(['items' => $permintaan->produk, 'id' => $id]);
+        if (Auth::user()->role_id == 2){
+            $permintaan = Permintaan::find($id);
+            return view('permintaan.kasir.item')->with(['items' => $permintaan->produk, 'id' => $id]);
+        } elseif (Auth::user()->role_id == 4){
+            $permintaan = Permintaan::find($id);
+            return view('permintaan.reseller.item.index')->with(['items' => $permintaan->produk, 'id' => $id]);
+        }
     }
     public function createItem($id)
     {
@@ -51,5 +57,10 @@ class PermintaanController extends Controller
         $id = Permintaan::find($permintaan);
         $id->produk()->detach($produk);
         return redirect('/permintaan/item/'.$permintaan);
+    }
+    public function validasi($id, $value)
+    {
+        Permintaan::where('id', $id)->update(['validasi_id' => $value]);
+        return redirect('/permintaan');
     }
 }
