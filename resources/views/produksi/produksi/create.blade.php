@@ -79,7 +79,7 @@
                                     <label></label>
                                     <button type="submit" id="submit" value="submit" class="btn btn-fill btn-info">Simpan
                                     </button>
-                                    <a href="/permintaan" class="btn btn-danger btn-fill ">Kembali</a>
+                                    <a href="/produksi" class="btn btn-danger btn-fill ">Kembali</a>
                                 </div>
                             </div>
                         </div>

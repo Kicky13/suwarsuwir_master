@@ -72,8 +72,8 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $produk['nama_produk'] }}</td>
                                                 <td>{{ $production->tanggal_produksi }}</td>
-                                                <td>{{ $produk['jumlah_produksi'] }}</td>
-                                                <td></td>
+                                                <td>{{ $produk->pivot['tanggal_kedaluwarsa'] }}</td>
+                                                <td>{{ $produk->pivot['jumlah_produksi'] }}</td>
                                                 </tr>
                                             @endforeach
                                         @endforeach
