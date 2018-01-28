@@ -70,11 +70,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Nama Produk</label>
-                                        <input type="text" name="jumlah_produk" placeholder="masukkan jumlah produk"
-                                               class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
                                         <label></label>
                                         <button type="submit" value="submit" class="btn btn-fill btn-info">Simpan
                                         </button>

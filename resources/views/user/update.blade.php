@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" name="password" placeholder="Kosongi Password apabila tidak perlu dirubah"
-                                               class="form-control" required>
+                                               class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label></label>

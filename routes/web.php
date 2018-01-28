@@ -40,3 +40,7 @@ Route::get('/permintaan/item/{id}', 'PermintaanController@detail');
 Route::get('/permintaan/item/create/{id}', 'PermintaanController@createItem');
 Route::get('/permintaan/item/delete/{permintaan}/{produk}', 'PermintaanController@deleteItem');
 Route::get('/permintaan/validasi/{id}/{value}', 'PermintaanController@validasi');
+
+Route::get('/produksi', 'ProduksiController@index');
+Route::get('/produksi/create', 'ProduksiController@createView');
+Route::post('/produksi/create', 'ProduksiController@create');

@@ -1,4 +1,4 @@
-@extends('layouts.kasirApp')
+@extends('layouts.produksiApp')
 
 @section('konten')
     <div class="main-panel">
@@ -16,8 +16,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand">Data Produk</a>
+                    </button>    <a class="navbar-brand">Dashboard Produksi</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -44,41 +43,41 @@
             </div>
         </nav>
         <!--Grafik Permintaan-->
-        <div class="content wrapper">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <!-- Tabel jumlah produk -->
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">Daftar Produk</div>
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Data Penjualan</h4>
+                            </div>
                             <div class="content">
-                                <div class="fresh-datatables">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                        <th>#</th>
-                                        <th>Nama Produk</th>
-                                        <th>Harga</th>
-                                        <th>Jumlah Produk</th>
-                                        </thead>
-                                        <tbody>
-                                        <?php $no = 1; ?>
-                                        @foreach ($products as $product)
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $product->nama_produk }}</td>
-                                            <td>{{ $product->harga }}</td>
-                                            <td>{{ $product->jumlah_produk }}</td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                <div id="chartActivity" class="ct-chart"></div>
+                            </div>
+                            <div class="footer">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Suwar-Suwir Rasa Nanas
+                                    <i class="fa fa-circle text-danger"></i> Suwar-Suwir Rasa Melon
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-check"></i> Data information certified
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel jumlah produk end -->
                 </div>
             </div>
         </div>
         <!--Grafik Permintaan end-->
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            demo.initDashboardPageCharts();
+            demo.initVectorMap();
+        });
+    </script>
 @endsection

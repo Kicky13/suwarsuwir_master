@@ -32,7 +32,7 @@ class HomeController extends Controller
         } elseif (Auth::user()->role_id == 2){
             return view('home.kasir');
         } elseif (Auth::user()->role_id == 3){
-            return view('home.bagprod');
+            return view('home.produksi');
         } else {
             return view('home.reseller');
         }

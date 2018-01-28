@@ -16,9 +16,14 @@ class ProdukController extends Controller
         } elseif (Auth::user()->role_id == 2){
             $products = Produk::all();
             return view('produk.kasir.index', compact('products'));
+        } elseif (Auth::user()->role_id == 3){
+            $products = Produk::all();
+            return view('produk.produksi.index', compact('products'));
         } elseif (Auth::user()->role_id == 4){
             $products = Produk::all();
             return view('produk.reseller.index', compact('products'));
+        } else {
+            return redirect('/login');
         }
     }
     public function createView()

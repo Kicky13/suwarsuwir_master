@@ -1,4 +1,4 @@
-@extends('layouts.kasirApp')
+@extends('layouts.produksiApp')
 
 @section('konten')
     <div class="main-panel">
@@ -17,7 +17,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Data Produk</a>
+                    <a class="navbar-brand">Data Produksi</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -52,22 +52,30 @@
                         <div class="card">
                             <div class="header">Daftar Produk</div>
                             <div class="content">
+                                <div class="toolbar">
+                                    <a href="/produksi/create"
+                                       class="btn btn-primary" type="button">Tambah Data</a>
+                                </div>
                                 <div class="fresh-datatables">
                                     <table class="table table-hover table-striped">
                                         <thead>
                                         <th>#</th>
                                         <th>Nama Produk</th>
-                                        <th>Harga</th>
-                                        <th>Jumlah Produk</th>
+                                        <th>Tgl Produksi</th>
+                                        <th>Tgl Kedaluarsa</th>
+                                        <th>Jumlah Produksi</th>
                                         </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach ($products as $product)
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $product->nama_produk }}</td>
-                                            <td>{{ $product->harga }}</td>
-                                            <td>{{ $product->jumlah_produk }}</td>
-                                            </tr>
+                                        @foreach ($productions as $production)
+                                            @foreach($production->produk as $produk)
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $produk['nama_produk'] }}</td>
+                                                <td>{{ $production->tanggal_produksi }}</td>
+                                                <td>{{ $produk['jumlah_produksi'] }}</td>
+                                                <td></td>
+                                                </tr>
+                                            @endforeach
                                         @endforeach
                                         </tbody>
                                     </table>

@@ -47,7 +47,6 @@
         <div class="content wrapper">
             <div class="container-fluid">
                 <div class="row">
-
                     <!-- Tabel jumlah produk -->
                     <div class="col-md-12">
                         <div class="card">
@@ -59,6 +58,7 @@
                                         <th>#</th>
                                         <th>Nama Produk</th>
                                         <th>Harga Produk</th>
+                                        <th>Sisa Produk</th>
                                         <th class="text-center">Jumlah yang Dipesan</th>
                                         </thead>
                                         <tbody>
@@ -68,6 +68,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $item->nama_produk }}</td>
                                                 <td>{{ $item->harga }}</td>
+                                                <td>{{ $item->jumlah_produk }}</td>
                                                 <td class="text-center">{{ $item->pivot['jumlah_permintaan'] }}</td>
                                             </tr>
                                         @endforeach
