@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DetailPermintaan;
 use App\Permintaan;
 use App\Produk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +61,8 @@ class PermintaanController extends Controller
     }
     public function validasi($id, $value)
     {
-        Permintaan::where('id', $id)->update(['validasi_id' => $value]);
+        $date = Carbon::now();
+        Permintaan::where('id', $id)->update(['validasi_id' => $value, 'tanggal_terjual' => $date->toDateString()]);
         return redirect('/permintaan');
     }
 }
