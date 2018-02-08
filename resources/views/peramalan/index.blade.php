@@ -57,19 +57,21 @@
                             <div class="content">
                                 <div class="form-group">
                                     <div class="row">
-                                    <div class="col-md-3 form-group">
-                                    <select name="produk" id="produk" class="form-control" required>
-                                        <option selected disabled>Pilih Salah Satu</option>
-                                        @foreach ($products as $product)
-                                            <option value="{{ $product->id }}">{{ $product->nama_produk }}</option>
-                                        @endforeach
-                                    </select>
-                                    </div>
                                         <div class="col-md-3 form-group">
-                                            <button type="submit" value="submit" id="ramal" class="btn btn-fill btn-info">Ramal</button>
+                                            <select name="produk" id="produk" class="form-control" required>
+                                                <option selected disabled>Pilih Salah Satu</option>
+                                                @foreach ($products as $product)
+                                                    <option value="{{ $product->id }}">{{ $product->nama_produk }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <button type="submit" value="submit" id="ramal"
+                                                    class="btn btn-fill btn-info">Ramal
+                                            </button>
                                         </div>
                                     </div>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -77,37 +79,27 @@
                 </div>
                 <div class="row">
                     <!-- Tabel jumlah produk -->
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">Hasil Peramalan</div>
-                            <div class="content">
-                                <select name="produk" id="produk" class="form-control" required>
-                                    <option selected disabled>Pilih Salah Satu</option>
-                                    @foreach ($products as $product)
-                                        <option value="{{ $product->id }}">{{ $product->nama_produk }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="fresh-datatables">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                        <th>#</th>
-                                        <th>Nama Produk</th>
-                                        <th>Harga</th>
-                                        <th>Jumlah Produk</th>
-                                        </thead>
-                                        <tbody>
-                                        <?php $no = 1; ?>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <section id="data">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">Hasil Peramalan</div>
+                                <div class="content">
+                                    <div class="fresh-datatables">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                            <th>#</th>
+                                            <th>Nama Produk</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah Produk</th>
+                                            </thead>
+                                            <tbody id="tabelProduk">
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                     <!-- Tabel jumlah produk end -->
                 </div>
             </div>
@@ -120,9 +112,27 @@
     <script>
         $(document).ready(function () {
             console.log('Ready');
+            $('#produk').change(function () {
+                var produk = $(this).val();
+                console.log(produk);
+                $.get("/peramalan/requestData/"+produk, function (msg) {
+                    $('#tabelProduk').html(msg)
+                });
+            });
             $('#ramal').click(function () {
-               console.log('Ramal');
-
+                console.log('Ramal');
+                var produk = $('#produk').val();
+                $.ajax({
+                    type    :   'POST',
+                    headers :   {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url     :   '/peramalan',
+                    data    :   {
+                        'produk_id' : produk
+                    }
+                }).done(function (data) {
+                    console.log(data);
+                    swal('SUKSES', 'Bulan ini berhasil diramal', 'success')
+                });
             });
         });
     </script>

@@ -47,3 +47,4 @@ Route::post('/produksi/create', 'ProduksiController@create');
 
 Route::get('/peramalan', 'PeramalanController@index');
 Route::post('/peramalan', 'PeramalanController@ramal');
+Route::get('/peramalan/requestData/{id}', 'PeramalanController@requestHistory');
