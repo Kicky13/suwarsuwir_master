@@ -112,7 +112,9 @@
     <script>
         $(document).ready(function () {
             console.log('Ready');
+            $('#ramal').hide();
             $('#produk').change(function () {
+                $('#ramal').show();
                 var produk = $(this).val();
                 console.log(produk);
                 $.get("/peramalan/requestData/"+produk, function (msg) {
@@ -134,7 +136,7 @@
                     if (data == 'sukses'){
                         swal('Sukses', 'Data berhasil diinputkan', 'success');
                     } else {
-                        swal('Maaf', 'Data telah ada', 'error');
+                        swal('Maaf', 'Peramalan bulan ini telah ada', 'error');
                     }
                 });
             });
