@@ -8,7 +8,7 @@ class Peramalan extends Model
 {
     protected $table = 'peramalan';
     public $timestamps = false;
-    protected $fillable = ['produk_id', 'nilai_aktual', 'nilai_single', 'nilai_double', 'nilai_triple', 'mape_single', 'mape_double', 'mape_triple', 'nilai_hasil', 'mape_hasil'];
+    protected $fillable = ['produk_id', 'nilai_aktual', 'at1', 'at2', 'at3', 'ftm2', 'ftm3', 'pe1', 'pe2', 'pe3', 'nilai_hasil', 'mape_hasil'];
 
     public function produk()
     {

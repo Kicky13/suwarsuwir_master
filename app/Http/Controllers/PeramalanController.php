@@ -35,23 +35,25 @@ class PeramalanController extends Controller
     {
         $produk = $request->produk_id;
         $date = Carbon::now(+7);
-        $recent = Peramalan::where('produk_id', $produk)->whereBetween('tanggal_peramalan', [$date->startOfMonth(), $date->endOfMonth()]);
+        $recent = Peramalan::where('produk_id', $produk)->whereYear('tanggal_peramalan', $date->year)->whereMonth('tanggal_peramalan', $date->month);
         if ($recent->count() == 0){
             $single = $this->single($produk);
             $double = $this->double($single, $produk);
             $triple = $this->triple($double, $produk);
-            $total = collect([['at' => $triple['at1'], 'pe' => $triple['pe1']], ['at' => $triple['at2'], 'pe' => $triple['pe2']], ['at' => $triple['at3'], 'pe' => $triple['pe3']]]);
-            $at = $total->max('at');
+            $total = collect([['hasil' => $triple['at1'], 'pe' => $triple['pe1']], ['hasil' => $triple['ftm2'], 'pe' => $triple['pe2']], ['hasil' => $triple['ftm3'], 'pe' => $triple['pe3']]]);
+            $at = $total->max('hasil');
             $pe = $total->min('pe');
             Peramalan::create([
                 'produk_id' => $produk,
                 'nilai_aktual' => $triple['xt'],
-                'nilai_single' => $triple['at1'],
-                'nilai_double' => $triple['at2'],
-                'nilai_triple' => $triple['at3'],
-                'mape_single' => $triple['pe1'],
-                'mape_double' => $triple['pe2'],
-                'mape_triple' => $triple['pe3'],
+                'at1' => $triple['at1'],
+                'at2' => $triple['at2'],
+                'at3' => $triple['at3'],
+                'ftm2' => $triple['ftm2'],
+                'ftm3' => $triple['ftm3'],
+                'pe1' => $triple['pe1'],
+                'pe2' => $triple['pe2'],
+                'pe3' => $triple['pe3'],
                 'nilai_hasil' => $at,
                 'mape_hasil' => $pe
             ]);
@@ -65,7 +67,7 @@ class PeramalanController extends Controller
     {
         $date = Carbon::now(+7);
         $last = Carbon::now(+7)->subMonth(1);
-        $recent = Peramalan::where('produk_id', $produk)->whereBetween('tanggal_peramalan', [$last->startOfMonth(), $last->endOfMonth()]);
+        $recent = Peramalan::where('produk_id', $produk)->whereYear('tanggal_peramalan', $last->year)->whereMonth('tanggal_peramalan', $last->month);
         $penjualan = DB::table('permintaan_produk as pp')->join('permintaan as p', 'p.id', '=', 'pp.permintaan_id')->where('validasi_id', '=', 3)->where('produk_id', '=', $produk)->whereYear('tanggal_terjual', '=', $date->year)->whereMonth('tanggal_terjual', '=', $date->month);
         $xt = $penjualan->sum('jumlah_permintaan');
         if ($recent->count() == 0){
@@ -85,7 +87,7 @@ class PeramalanController extends Controller
     public function double($data, $produk)
     {
         $last = Carbon::now(+7)->subMonth(1);
-        $recent = Peramalan::where('produk_id', $produk)->whereBetween('tanggal_peramalan', [$last->startOfMonth(), $last->endOfMonth()]);
+        $recent = Peramalan::where('produk_id', $produk)->whereYear('tanggal_peramalan', $last->year)->whereMonth('tanggal_peramalan', $last->month);
         if ($recent->count() == 0){
             $at2 = $data['xt'];
         } else {
@@ -99,15 +101,16 @@ class PeramalanController extends Controller
         } else {
             $pe = (abs($data['xt']-$ftm)/$data['xt'])*100;
         }
-        $data->put('at2', $ftm);
+        $data->put('at2', $at2);
         $data->put('pe2', $pe);
+        $data->put('ftm2', $ftm);
         return $data;
     }
 
     public function triple($data, $produk)
     {
         $last = Carbon::now(+7)->subMonth(1);
-        $recent = Peramalan::where('produk_id', $produk)->whereBetween('tanggal_peramalan', [$last->startOfMonth(), $last->endOfMonth()]);
+        $recent = Peramalan::where('produk_id', $produk)->whereYear('tanggal_peramalan', $last->year)->whereMonth('tanggal_peramalan', $last->month);
         if ($recent->count() == 0){
             $at3 = $data['xt'];
         } else {
@@ -122,8 +125,9 @@ class PeramalanController extends Controller
         } else {
             $pe = (abs($data['xt']-$ftm)/$data['xt'])*100;
         }
-        $data->put('at3', $ftm);
+        $data->put('at3', $at3);
         $data->put('pe3', $pe);
+        $data->put('ftm3', $ftm);
         return $data;
     }
 }

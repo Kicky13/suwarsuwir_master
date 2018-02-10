@@ -131,7 +131,11 @@
                     }
                 }).done(function (data) {
                     console.log(data);
-                    swal('SUKSES', 'Bulan ini berhasil diramal', 'success')
+                    if (data == 'sukses'){
+                        swal('Sukses', 'Data berhasil diinputkan', 'success');
+                    } else {
+                        swal('Maaf', 'Data telah ada', 'error');
+                    }
                 });
             });
         });
