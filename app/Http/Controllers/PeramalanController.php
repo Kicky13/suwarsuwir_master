@@ -19,14 +19,16 @@ class PeramalanController extends Controller
 
     public function requestHistory($produk)
     {
-        $products = Produk::all();
+        $forecasts = Peramalan::all()->where('produk_id', '=', $produk);
         $no = 1;
-        foreach ($products as $product) {
+        foreach ($forecasts as $forecast) {
             echo '<tr>
                     <td>'.$no++.'</td>
-                    <td>'.$product->nama_produk.'</td>
-                    <td>'.$product->harga.'</td>
-                    <td>'.$product->jumlah_produk.'</td>
+                    <td>'.$forecast->produk['nama_produk'].'</td>
+                    <td>'.$forecast->tanggal_peramalan.'</td>
+                    <td>'.$forecast->nilai_aktual.'</td>
+                    <td>'.$forecast->nilai_hasil.'</td>
+                    <td>'.$forecast->mape_hasil.'</td>
                 </tr>';
         }
     }
@@ -73,7 +75,8 @@ class PeramalanController extends Controller
         if ($recent->count() == 0){
             $at1 = $xt;
         } else {
-            $at1 = 0;
+            $before = $recent->get();
+            $at1 = (0.4*$before[0]['nilai_aktual'])+((1-0.4)*$before[0]['at1']);
         }
         if ($xt-$at1 == 0){
             $pe = 0;
@@ -91,7 +94,8 @@ class PeramalanController extends Controller
         if ($recent->count() == 0){
             $at2 = $data['xt'];
         } else {
-            $at2 = 0;
+            $before = $recent->get();
+            $at2 = (0.4*$data['at1'])+((1-0.4)*$before[0]['at2']);
         }
         $at = (2*$data['at1'])-$at2;
         $bt = (0.4/(1-0.4))*($data['at1']-$at2);
@@ -114,7 +118,8 @@ class PeramalanController extends Controller
         if ($recent->count() == 0){
             $at3 = $data['xt'];
         } else {
-            $at3 = 0;
+            $before = $recent->get();
+            $at3 = (0.4*$data['at2'])+((1-0.4)*$before[0]['at3']);
         }
         $at = (3*$data['at1'])-(3*$data['at2'])+$at3;
         $bt = 0.4/(2*(1-0.4))*((6-(5*0.4)*$data['at1'])-(10-(8*0.4)*$data['at2'])+(4-(3*0.4)*$at3));

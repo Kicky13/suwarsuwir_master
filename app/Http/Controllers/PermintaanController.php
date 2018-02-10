@@ -61,7 +61,7 @@ class PermintaanController extends Controller
     }
     public function validasi($id, $value)
     {
-        $date = Carbon::now();
+        $date = Carbon::now(+7);
         Permintaan::where('id', $id)->update(['validasi_id' => $value, 'tanggal_terjual' => $date->toDateString()]);
         return redirect('/permintaan');
     }

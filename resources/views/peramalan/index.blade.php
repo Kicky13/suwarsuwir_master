@@ -89,8 +89,10 @@
                                             <thead>
                                             <th>#</th>
                                             <th>Nama Produk</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Produk</th>
+                                            <th>Tanggal Ramal</th>
+                                            <th>Nilai Aktual</th>
+                                            <th>Nilai Ramal</th>
+                                            <th>Nilai PE</th>
                                             </thead>
                                             <tbody id="tabelProduk">
                                             </tbody>
